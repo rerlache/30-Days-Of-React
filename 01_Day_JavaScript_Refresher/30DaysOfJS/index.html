@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>30 Days of JavaScript</title>
+  </head>
+  <body>
+    <!--Inline Scripts-->
+    <h1>Inline Script</h1>
+    <button onclick="alert('Welcome to 30 Days of JavaScript')">Welcome</button>
+    <button onclick="alert('Happy new Year!')">Best Wishes!</button>
+
+    <!--Internal Script-->
+    <h1>Internal Script</h1>
+    <p>console.log('Hello World!')<br />check the developer console</p>
+    <script>
+      console.log("Internal Script:");
+      console.log("Hello World!");
+    </script>
+
+    <!--External Script-->
+    <h1>External Script</h1>
+    <p>
+      external scripts can be in the head or body of the page.<br />
+      prefered they are placed at the end of the body-tag.
+    </p>
+    <script>
+      console.log("External script:");
+    </script>
+    <script src="./introduction.js"></script>
+
+    <!--Multiple External scripts-->
+    <h1>Multiple External scripts</h1>
+    <script>
+      console.log("Multiple External scripts:");
+    </script>
+    <script src="./helloWorld.js"></script>
+    <script src="./introduction.js"></script>
+    <script src="./variables.js"></script>
+    <script src="./arrays.js"></script>
+  </body>
+</html>
