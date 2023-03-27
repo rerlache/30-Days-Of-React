@@ -70,14 +70,16 @@ const person = {
   },
 };
 
+const skillsFormatted = person.skills.map((skill) => <div className="userSkillstyle">{skill}</div>)
+
 const userCard = (
   <div className="userContainer">
     <img src={person.photo} alt={person.getFullName()} className="userPicturestyle" />
-    <h1 className="userNamestyle">{person.getFullName().toUpperCase()}</h1>
+    <h1 className="userNamestyle">{person.getFullName()}</h1>
     <p className="userTitlestyle">{person.jobTitle}</p>
-    <h3>SKILLS</h3>
-    <p>{person.skills.join(", ")}</p>
-    <p>Joined on {person.joined}</p>
+    <h3 className="userSkillsheaderstyle">skills</h3>
+    <div className="userSkillscontainerstyle">{skillsFormatted}</div>
+    <br /><br /><div className="userJoinedstyle">Joined on {person.joined}</div>
   </div>
 );
 
