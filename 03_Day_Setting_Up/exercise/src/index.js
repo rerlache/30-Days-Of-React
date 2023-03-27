@@ -5,6 +5,7 @@ import htmlLogo from "./images/html.svg";
 import cssLogo from "./images/css.svg";
 import jsLogo from "./images/javascript.svg";
 import reactLogo from "./images/react.svg";
+import userPhoto from "./images/robin.jpg";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -63,18 +64,18 @@ const person = {
     "german",
   ],
   joined: "01.12.2022",
-  photo: "",
+  photo: userPhoto,
   getFullName() {
     return this.firstName + " " + this.lastName;
   },
 };
 
 const userCard = (
-  <div>
-    <img src={person.photo} alt={person.getFullName()} />
-    <h1>{person.getFullName().toUpperCase()}</h1>
-    <p>{person.jobTitle}</p>
-    <h3>Skills</h3>
+  <div className="userContainer">
+    <img src={person.photo} alt={person.getFullName()} className="userPicturestyle" />
+    <h1 className="userNamestyle">{person.getFullName().toUpperCase()}</h1>
+    <p className="userTitlestyle">{person.jobTitle}</p>
+    <h3>SKILLS</h3>
     <p>{person.skills.join(", ")}</p>
     <p>Joined on {person.joined}</p>
   </div>
