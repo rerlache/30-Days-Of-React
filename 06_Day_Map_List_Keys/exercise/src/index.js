@@ -7,8 +7,7 @@ import jsLogo from "./images/javascript.svg";
 import reactLogo from "./images/react.svg";
 import userPhoto from "./images/robin.jpg";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-
+//#region Header
 const logos = [htmlLogo, cssLogo, jsLogo, reactLogo];
 const LogosFormatted = (props) => {
   return props.logos.map((logo) => (
@@ -27,9 +26,10 @@ const Header = (props) => (
     </div>
   </header>
 );
+//#endregion
+//#region Subscribe
 const subHeader = "Subscribe";
 const subDescription = "Sign up with your email to receive news and updates";
-
 const CustomButton = (props) => (
   <button className={props.design}>{props.text}</button>
 );
@@ -40,7 +40,6 @@ const CustomInput = (props) => (
     placeholder={props.placeholder}
   />
 );
-
 const SubscribeCard = (props) => (
   <div className="subscribecardstyle">
     <h1 className="subheaderstyle">{props.welcome}</h1>
@@ -61,8 +60,8 @@ const SubscribeCard = (props) => (
     <CustomButton design="subbuttonstyle" text={subHeader} />
   </div>
 );
-
-// Hexadecimal color generator
+//#endregion Subscribe
+//#region Hexadecimal color generator
 const hexaColor = () => {
   let str = "0123456789abcdef";
   let color = "";
@@ -72,7 +71,6 @@ const hexaColor = () => {
   }
   return "#" + color;
 };
-
 const HexaColor = (props) => {
   let colorStr = "#" + props.colorCode;
   let divs = [];
@@ -101,7 +99,8 @@ const HexaColor = (props) => {
     </div>
   );
 };
-
+//#endregion Hexadecimal color generator
+//#region UserCard
 const person = {
   firstName: "Robin",
   lastName: "Erlacher",
@@ -138,7 +137,6 @@ const Skills = ({ skills }) => {
   console.log({ skillsList });
   return <div>{skillsList}</div>;
 };
-
 const UserCard = (props) => (
   <div className="userContainer">
     <img
@@ -155,7 +153,8 @@ const UserCard = (props) => (
     <div className="userJoinedstyle">Joined on {props.person.joined}</div>
   </div>
 );
-
+//#endregion
+//#region Odd/Even/Prime Numbers
 const numberGeneratorNumbers = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30, 31,
@@ -194,7 +193,6 @@ const NumberDivGen = (props) => {
     </div>
   );
 };
-
 const NumberGenerator = (props) => {
   let colors = [];
   props.numbers.forEach((number) => {
@@ -203,7 +201,10 @@ const NumberGenerator = (props) => {
   console.log({ colors });
   return <div className="flex-container">{colors}</div>;
 };
+//#endregion
 
+//#region RENDER MAGIC
+const root = ReactDOM.createRoot(document.getElementById("root"));
 const App = () => (
   <div className="app">
     <h2>Frontend Technologies</h2>
@@ -213,7 +214,7 @@ const App = () => (
     <SubscribeCard welcome={subHeader} desc={subDescription} />
     <hr />
     <h2>Hexadecimal Colors</h2>
-    <HexaColor colorCode="4e417e" amount="17" />
+    <HexaColor colorCode="4e417e" amount="20" />
     <hr />
     <h2>Person Card</h2>
     <UserCard person={person} />
@@ -223,5 +224,5 @@ const App = () => (
     <hr />
   </div>
 );
-
 root.render(<App />);
+//#endregion
