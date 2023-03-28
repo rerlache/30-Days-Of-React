@@ -75,7 +75,7 @@ const HexaColor = (props) => {
   let colorStr = "#" + props.colorCode;
   let divs = [];
   for (let index = 0; index < Number(props.amount); index++) {
-    const hexColorCode = hexaColor()
+    const hexColorCode = hexaColor();
     divs.push(
       <div
         key={hexColorCode}
@@ -156,8 +156,8 @@ const UserCard = (props) => (
 //#endregion
 //#region Odd/Even/Prime Numbers
 const numberGeneratorNumbers = [
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-  23, 24, 25, 26, 27, 28, 29, 30, 31,
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
 ];
 function IsPrime(num) {
   for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
@@ -202,6 +202,51 @@ const NumberGenerator = (props) => {
   return <div className="flex-container">{colors}</div>;
 };
 //#endregion
+//#region Population
+const tenHighestPopulation = [
+  { country: "World", population: 7693165599 },
+  { country: "China", population: 1377422166 },
+  { country: "India", population: 1295210000 },
+  { country: "USA", population: 323947000 },
+  { country: "Indonesia", population: 258705000 },
+  { country: "Brazil", population: 206135893 },
+  { country: "Pakistan", population: 194125062 },
+  { country: "Nigeria", population: 186988000 },
+  { country: "Bangladesh", population: 161006790 },
+  { country: "Russia", population: 146599183 },
+  { country: "Japan", population: 126960000 },
+];
+const Population = ({ populationData: { country, population } }) => {
+  const barWidth = Math.round(population / 15000000);
+  console.log({ barWidth });
+  return (
+    <tbody>
+      <tr>
+        <td className="popCountryStyle">{country}</td>
+        <td>
+          <div id="dataBar" style={{ width: barWidth }} />
+        </td>
+        <td className="popNumberStyle">
+          {Number(population).toLocaleString()}
+        </td>
+      </tr>
+    </tbody>
+  );
+};
+const GetPopulationDivList = ({ pops }) => {
+  const popList = pops.map((pop) => (
+    <Population populationData={pop} key={pop.country} />
+  ));
+  return <table className="centerTable">{popList}</table>;
+};
+const PopulationRendering = (props) => (
+  <div>
+    <h1 className="centerText">World Population</h1>
+    <h3 className="centerText">Ten most populated countries</h3>
+    <GetPopulationDivList pops={props.popData} />
+  </div>
+);
+//#endregion
 
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -221,6 +266,9 @@ const App = () => (
     <hr />
     <h2>Even/Odd/Prime Numbers</h2>
     <NumberGenerator numbers={numberGeneratorNumbers} />
+    <hr />
+    <h2>Population</h2>
+    <PopulationRendering popData={tenHighestPopulation} />
     <hr />
   </div>
 );
