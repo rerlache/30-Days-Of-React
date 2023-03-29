@@ -10,9 +10,10 @@ import userPhoto from "./images/robin.jpg";
 //#region Header
 const logos = [htmlLogo, cssLogo, jsLogo, reactLogo];
 class LogosFormatted extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // this is how the constructor is build
+  //  constructor(props) {
+  //    the code here will run at first!
+  //  }
   render() {
     return this.props.logos.map((logo) => (
       <img key={logo} alt={logo} src={logo} className="logomargin" />
@@ -20,9 +21,9 @@ class LogosFormatted extends React.Component {
   }
 }
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <header>
@@ -43,17 +44,21 @@ class Header extends React.Component {
 const subHeader = "Subscribe";
 const subDescription = "Sign up with your email to receive news and updates";
 class CustomButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
-    return <button className={this.props.design}>{this.props.text}</button>;
+    return (
+      <button className={this.props.design} onClick={this.props.doThis}>
+        {this.props.text}
+      </button>
+    );
   }
 }
 class CustomInput extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <input
@@ -65,9 +70,9 @@ class CustomInput extends React.Component {
   }
 }
 class SubscribeCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <div className="subscribecardstyle">
@@ -107,9 +112,9 @@ const randomHexaColor = (props) => {
   return "#" + color;
 };
 class HexaColor extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     let colorStr = "#" + this.props.colorCode;
     let divs = [];
@@ -178,9 +183,9 @@ const Skills = ({ skills }) => {
   return <div>{skillsList}</div>;
 };
 class UserCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <div className="userContainer">
@@ -233,9 +238,9 @@ function NumberColor(num) {
   return color;
 }
 class NumberDivGen extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <div
@@ -295,9 +300,9 @@ const GetPopulationDivList = ({ pops }) => {
 };
 
 class PopulationRendering extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  //  constructor(props) {
+  //    super(props);
+  //  }
   render() {
     return (
       <div>
@@ -310,13 +315,106 @@ class PopulationRendering extends React.Component {
 }
 //#endregion
 
+class StateTesting extends React.Component {
+  // declaring state
+  state = {
+    image:
+      "https://thumbs.dreamstime.com/b/zebra-pixel-image-vector-illustration-animal-cross-stitch-game-icon-zebra-pixel-image-vector-illustration-animal-228607859.jpg",
+    count: 0,
+  };
+  // methods to change the state
+  addOne = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+  addFive = () => {
+    this.setState({ count: this.state.count + 5 });
+  };
+  minusOne = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+  minusFive = () => {
+    this.setState({ count: this.state.count - 5 });
+  };
+  changeAnimal = () => {
+    let dogURL =
+      "https://thumbs.dreamstime.com/b/zebra-pixel-image-vector-illustration-animal-cross-stitch-game-icon-zebra-pixel-image-vector-illustration-animal-228607859.jpg";
+    let birdURL =
+      "https://thumbs.dreamstime.com/z/pixel-papagei-vogel-bild-bit-papageienvogelbild-f%C3%BCr-spielressourcen-kreuzstich-muster-oder-hemddesign-vektor-222840450.jpg";
+    let image = this.state.image === birdURL ? dogURL : birdURL;
+    this.setState({ image });
+  };
+  render() {
+    // accessing the state value
+    const count = this.state.count;
+    const changeBackground = this.props.changeBackground;
+    const bgColor = this.props.bgColor
+    return (
+      <div>
+        <div className="flex-container">
+          <CustomButton
+            design="stateButtonStyle"
+            text="+ 5"
+            doThis={this.addFive}
+          />
+          <CustomButton
+            design="stateButtonStyle"
+            text="+ 1"
+            doThis={this.addOne}
+          />
+          <CustomButton
+            design="stateButtonStyle"
+            text="- 5"
+            doThis={this.minusFive}
+          />
+          <CustomButton
+            design="stateButtonStyle"
+            text="- 1"
+            doThis={this.minusOne}
+          />
+          <CustomButton
+            design="stateButtonStyle"
+            text="Chg Pic"
+            doThis={this.changeAnimal}
+          />
+          <CustomButton
+            design="stateButtonStyle"
+            text="Chg BG"
+            doThis={changeBackground}
+          />
+        </div>
+        <div className="flex-container">
+          <h3>count: {count}</h3>
+          <img src={this.state.image} alt="animal" width="50px" />
+          <h3>color: {bgColor}</h3>
+
+        </div>
+      </div>
+    );
+  }
+}
+
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
+  state = {
+    theme: {
+      backgroundColor: "smokewhite",
+      color: "black",
+    },
+  };
+  changeBackground = () => {
+    let whiteBG = {backgroundColor: "smokewhite", color: "black"};
+    let blackBG = {backgroundColor: "black", color: "smokewhite"};
+    let bgColor = this.state.theme.backgroundColor == whiteBG.backgroundColor ? blackBG : whiteBG;
+    console.log(this.state.theme == whiteBG);
+    this.setState({ theme: { bgColor } });
+  };
   render() {
+    const bgColor = this.state.theme.backgroundColor
+    console.log(this.state.theme.backgroundColor)
     return (
       <div className="app">
         <h2>Frontend Technologies</h2>
@@ -337,6 +435,8 @@ class App extends React.Component {
         <h2>Population</h2>
         <PopulationRendering popData={tenHighestPopulation} />
         <hr />
+        <h2>State Testing</h2>
+        <StateTesting changeBackground={this.changeBackground} bgColor={bgColor} />
       </div>
     );
   }
