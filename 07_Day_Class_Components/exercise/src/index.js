@@ -9,60 +9,95 @@ import userPhoto from "./images/robin.jpg";
 
 //#region Header
 const logos = [htmlLogo, cssLogo, jsLogo, reactLogo];
-const LogosFormatted = (props) => {
-  return props.logos.map((logo) => (
-    <img key={logo} alt={logo} src={logo} className="logomargin" />
-  ));
-};
-const Header = (props) => (
-  <header>
-    <div className="header-wrapper">
-      <center>
-        <h3>{props.headline}</h3>
-        <div>
-          <LogosFormatted logos={logos} />
+class LogosFormatted extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return this.props.logos.map((logo) => (
+      <img key={logo} alt={logo} src={logo} className="logomargin" />
+    ));
+  }
+}
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <header>
+        <div className="header-wrapper">
+          <center>
+            <h3>{this.props.headline}</h3>
+            <div>
+              <LogosFormatted logos={logos} />
+            </div>
+          </center>
         </div>
-      </center>
-    </div>
-  </header>
-);
+      </header>
+    );
+  }
+}
 //#endregion
 //#region Subscribe
 const subHeader = "Subscribe";
 const subDescription = "Sign up with your email to receive news and updates";
-const CustomButton = (props) => (
-  <button className={props.design}>{props.text}</button>
-);
-const CustomInput = (props) => (
-  <input
-    id={props.id}
-    className={props.design}
-    placeholder={props.placeholder}
-  />
-);
-const SubscribeCard = (props) => (
-  <div className="subscribecardstyle">
-    <h1 className="subheaderstyle">{props.welcome}</h1>
-    <p className="subdescriptionstyle">{props.desc}</p>
-    <div>
-      <CustomInput
-        id="firstNameInput"
-        design="subinputstyle"
-        placeholder="First name"
+class CustomButton extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <button className={this.props.design}>{this.props.text}</button>;
+  }
+}
+class CustomInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <input
+        id={this.props.id}
+        className={this.props.design}
+        placeholder={this.props.placeholder}
       />
-      <CustomInput
-        id="lastNameInput"
-        design="subinputstyle"
-        placeholder="Last name"
-      />
-      <CustomInput id="emailInput" design="subinputstyle" placeholder="Email" />
-    </div>
-    <CustomButton design="subbuttonstyle" text={subHeader} />
-  </div>
-);
+    );
+  }
+}
+class SubscribeCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="subscribecardstyle">
+        <h1 className="subheaderstyle">{this.props.welcome}</h1>
+        <p className="subdescriptionstyle">{this.props.desc}</p>
+        <div>
+          <CustomInput
+            id="firstNameInput"
+            design="subinputstyle"
+            placeholder="First name"
+          />
+          <CustomInput
+            id="lastNameInput"
+            design="subinputstyle"
+            placeholder="Last name"
+          />
+          <CustomInput
+            id="emailInput"
+            design="subinputstyle"
+            placeholder="Email"
+          />
+        </div>
+        <CustomButton design="subbuttonstyle" text={subHeader} />
+      </div>
+    );
+  }
+}
 //#endregion Subscribe
 //#region Hexadecimal color generator
-const hexaColor = () => {
+const randomHexaColor = (props) => {
   let str = "0123456789abcdef";
   let color = "";
   for (let i = 0; i < 6; i++) {
@@ -71,34 +106,39 @@ const hexaColor = () => {
   }
   return "#" + color;
 };
-const HexaColor = (props) => {
-  let colorStr = "#" + props.colorCode;
-  let divs = [];
-  for (let index = 0; index < Number(props.amount); index++) {
-    const hexColorCode = hexaColor();
-    divs.push(
-      <div
-        key={hexColorCode}
-        style={{ backgroundColor: hexColorCode }}
-        className="colorCardstyle"
-      >
-        {hexColorCode}
+class HexaColor extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    let colorStr = "#" + this.props.colorCode;
+    let divs = [];
+    for (let index = 0; index < Number(this.props.amount); index++) {
+      const hexColorCode = randomHexaColor();
+      divs.push(
+        <div
+          key={hexColorCode}
+          style={{ backgroundColor: hexColorCode }}
+          className="colorCardstyle"
+        >
+          {hexColorCode}
+        </div>
+      );
+    }
+    return (
+      <div className="flex-container">
+        <div
+          id={colorStr}
+          style={{ backgroundColor: colorStr }}
+          className="colorCardstyle"
+        >
+          {colorStr}
+        </div>
+        {divs}
       </div>
     );
   }
-  return (
-    <div className="flex-container">
-      <div
-        id={colorStr}
-        style={{ backgroundColor: colorStr }}
-        className="colorCardstyle"
-      >
-        {colorStr}
-      </div>
-      {divs}
-    </div>
-  );
-};
+}
 //#endregion Hexadecimal color generator
 //#region UserCard
 const person = {
@@ -137,22 +177,31 @@ const Skills = ({ skills }) => {
   console.log({ skillsList });
   return <div>{skillsList}</div>;
 };
-const UserCard = (props) => (
-  <div className="userContainer">
-    <img
-      src={props.person.photo}
-      alt={props.person.getFullName()}
-      className="userPicturestyle"
-    />
-    <h1 className="userNamestyle">{props.person.getFullName()}</h1>
-    <p className="userTitlestyle">{props.person.jobTitle}</p>
-    <h3 className="userSkillsheaderstyle">skills</h3>
-    <div className="flex-container">
-      <Skills skills={props.person.skills} />
-    </div>
-    <div className="userJoinedstyle">Joined on {props.person.joined}</div>
-  </div>
-);
+class UserCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="userContainer">
+        <img
+          src={this.props.person.photo}
+          alt={this.props.person.getFullName()}
+          className="userPicturestyle"
+        />
+        <h1 className="userNamestyle">{this.props.person.getFullName()}</h1>
+        <p className="userTitlestyle">{this.props.person.jobTitle}</p>
+        <h3 className="userSkillsheaderstyle">skills</h3>
+        <div className="flex-container">
+          <Skills skills={this.props.person.skills} />
+        </div>
+        <div className="userJoinedstyle">
+          Joined on {this.props.person.joined}
+        </div>
+      </div>
+    );
+  }
+}
 //#endregion
 //#region Odd/Even/Prime Numbers
 const numberGeneratorNumbers = [
@@ -183,16 +232,21 @@ function NumberColor(num) {
   }
   return color;
 }
-const NumberDivGen = (props) => {
-  return (
-    <div
-      className="numberBoxStyle"
-      style={{ backgroundColor: NumberColor(props.number) }}
-    >
-      {props.number}
-    </div>
-  );
-};
+class NumberDivGen extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div
+        className="numberBoxStyle"
+        style={{ backgroundColor: NumberColor(this.props.number) }}
+      >
+        {this.props.number}
+      </div>
+    );
+  }
+}
 const NumberGenerator = (props) => {
   let colors = [];
   props.numbers.forEach((number) => {
@@ -234,43 +288,58 @@ const Population = ({ populationData: { country, population } }) => {
   );
 };
 const GetPopulationDivList = ({ pops }) => {
-  const popList = pops.map((pop) => (
-    <Population populationData={pop} key={pop.country} />
+  const popList = pops.map((population) => (
+    <Population populationData={population} key={population.country} />
   ));
   return <table className="centerTable">{popList}</table>;
 };
-const PopulationRendering = (props) => (
-  <div>
-    <h1 className="centerText">World Population</h1>
-    <h3 className="centerText">Ten most populated countries</h3>
-    <GetPopulationDivList pops={props.popData} />
-  </div>
-);
+
+class PopulationRendering extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1 className="centerText">World Population</h1>
+        <h3 className="centerText">Ten most populated countries</h3>
+        <GetPopulationDivList pops={this.props.popData} />
+      </div>
+    );
+  }
+}
 //#endregion
 
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
-const App = () => (
-  <div className="app">
-    <h2>Frontend Technologies</h2>
-    <Header headline="Front End Technologies" />
-    <hr />
-    <h2>Subscribe Card</h2>
-    <SubscribeCard welcome={subHeader} desc={subDescription} />
-    <hr />
-    <h2>Hexadecimal Colors</h2>
-    <HexaColor colorCode="4e417e" amount="20" />
-    <hr />
-    <h2>Person Card</h2>
-    <UserCard person={person} />
-    <hr />
-    <h2>Even/Odd/Prime Numbers</h2>
-    <NumberGenerator numbers={numberGeneratorNumbers} />
-    <hr />
-    <h2>Population</h2>
-    <PopulationRendering popData={tenHighestPopulation} />
-    <hr />
-  </div>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="app">
+        <h2>Frontend Technologies</h2>
+        <Header headline="Front End Technologies" />
+        <hr />
+        <h2>Subscribe Card</h2>
+        <SubscribeCard welcome={subHeader} desc={subDescription} />
+        <hr />
+        <h2>Hexadecimal Colors</h2>
+        <HexaColor colorCode="4e417e" amount="20" />
+        <hr />
+        <h2>Person Card</h2>
+        <UserCard person={person} />
+        <hr />
+        <h2>Even/Odd/Prime Numbers</h2>
+        <NumberGenerator numbers={numberGeneratorNumbers} />
+        <hr />
+        <h2>Population</h2>
+        <PopulationRendering popData={tenHighestPopulation} />
+        <hr />
+      </div>
+    );
+  }
+}
 root.render(<App />);
 //#endregion
