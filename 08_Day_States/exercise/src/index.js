@@ -314,7 +314,7 @@ class PopulationRendering extends React.Component {
   }
 }
 //#endregion
-
+//#region State
 class StateTesting extends React.Component {
   // declaring state
   state = {
@@ -347,7 +347,7 @@ class StateTesting extends React.Component {
     // accessing the state value
     const count = this.state.count;
     const changeBackground = this.props.changeBackground;
-    const bgColor = this.props.bgColor
+    const bgColor = this.props.bgColor;
     return (
       <div>
         <div className="flex-container">
@@ -386,12 +386,226 @@ class StateTesting extends React.Component {
           <h3>count: {count}</h3>
           <img src={this.state.image} alt="animal" width="50px" />
           <h3>color: {bgColor}</h3>
-
         </div>
       </div>
     );
   }
 }
+//#endregion
+//#region Country Selection
+// TODO: makeover of the list, to display it in a box and change it with a button click!
+const Country = ({
+  countryData: { name, capital, language, population, currency, flaglink },
+}) => {
+  return (
+    <tr>
+      <td>{name}</td>
+      <td>{capital}</td>
+      <td>{language}</td>
+      <td>{Number(population).toLocaleString()}</td>
+      <td>{currency}</td>
+      <td>
+        <img src={flaglink} alt={`Flag of ${name}`} height="100" width="150" />
+      </td>
+    </tr>
+  );
+};
+const countries = [
+  {name: "Canada",
+    capital: "Ottawa",
+    language: "English, French",
+    population: 37636329,
+    currency: "Canadian dollar",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ca-flag.gif",
+  },
+  {name: "United States",
+    capital: "Washington D.C.",
+    language: "English",
+    population: 332639102,
+    currency: "United States dollar",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_us-flag.gif",
+  },
+  // Add other countries following the same structure
+  {name: "Japan",
+    capital: "Tokyo",
+    language: "Japanese",
+    population: 126010000,
+    currency: "Japanese yen",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ja-flag.gif",
+  },
+  {name: "Mexico",
+    capital: "Mexico City",
+    language: "Spanish",
+    population: 126014024,
+    currency: "Mexican peso",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_mx-flag.gif",
+  },
+  {name: "Germany",
+    capital: "Berlin",
+    language: "German",
+    population: 83240525,
+    currency: "Euro",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_gm-flag.gif",
+  },
+  {name: "Brazil",
+    capital: "Brasília",
+    language: "Portuguese",
+    population: 213876599,
+    currency: "Brazilian real",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_br-flag.gif",
+  },
+  {name: "India",
+    capital: "New Delhi",
+    language: "Hindi, English",
+    population: 1393248737,
+    currency: "Indian rupee",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_in-flag.gif",
+  },
+  {name: "China",
+    capital: "Beijing",
+    language: "Mandarin",
+    population: 1411778724,
+    currency: "Renminbi",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ch-flag.gif",
+  },
+  {name: "France",
+    capital: "Paris",
+    language: "French",
+    population: 65480710,
+    currency: "Euro",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_fr-flag.gif",
+  },
+  {name: "South Korea",
+    capital: "Seoul",
+    language: "Korean",
+    population: 51269185,
+    currency: "South Korean won",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ks-flag.gif",
+  },
+  {name: "Spain",
+    capital: "Madrid",
+    language: "Spanish",
+    population: 46754778,
+    currency: "Euro",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_sp-flag.gif",
+  },
+  {name: "United Kingdom",
+    capital: "London",
+    language: "English",
+    population: 67886011,
+    currency: "Pound sterling",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_uk-flag.gif",
+  },
+  {name: "Italy",
+    capital: "Rome",
+    language: "Italian",
+    population: 60026546,
+    currency: "Euro",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_it-flag.gif",
+  },
+  {name: "Russia",
+    capital: "Moscow",
+    language: "Russian",
+    population: 145934462,
+    currency: "Russian ruble",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_rs-flag.gif",
+  },
+  {name: "Australia",
+    capital: "Canberra",
+    language: "English",
+    population: 25550683,
+    currency: "Australian dollar",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_as-flag.gif",
+  },
+  {name: "Nigeria",
+    capital: "Abuja",
+    language: "English",
+    population: 206139589,
+    currency: "Nigerian naira",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ni-flag.gif",
+  },
+  {name: "Argentina",
+    capital: "Buenos Aires",
+    language: "Spanish",
+    population: 45267449,
+    currency: "Argentine peso",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_ar-flag.gif",
+  },
+  {name: "Poland",
+    capital: "Warsaw",
+    language: "Polish",
+    population: 37975841,
+    currency: "Polish złoty",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_pl-flag.gif",
+  },
+  {name: "South Africa",
+    capital: "Pretoria, Cape Town, Bloemfontein",
+    language: "Afrikaans, English",
+    population: 59436725,
+    currency: "South African rand",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_sf-flag.gif",
+  },
+  {name: "Colombia",
+    capital: "Bogotá",
+    language: "Spanish",
+    population: 50882891,
+    currency: "Colombian peso",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_co-flag.gif",
+  },
+  {name: "Austria",
+    capital: "Vienna",
+    language: "German, English",
+    population: 8828910,
+    currency: "Euro",
+    flaglink: "https://www.worldometers.info/img/flags/small/tn_au-flag.gif",
+  },
+];
+const CountryTableReturn = ({ countrylist }) => {
+  const countryList = countrylist.map((country) => (
+    <Country countryData={country} key={country.name} />
+  ));
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Capital</th>
+          <th>Language</th>
+          <th>Population</th>
+          <th>Currency</th>
+          <th>Flag</th>
+        </tr>
+      </thead>
+      <tbody>{countryList}</tbody>
+    </table>
+  );
+};
+
+class CreateCountryArray extends React.Component {
+  constructor(props){
+    super(props)
+  }
+  render() {
+    const country = this.props
+    return (
+      <div>
+        <h1>{country.name}</h1>
+        <p>Capital: {country.capital}</p>
+        <p>Language: {country.language}</p>
+        <p>Population: {country.population}</p>
+        <p>Currency: {country.currency}</p>
+        <img
+          src={country.flaglink}
+          alt={`Flag of ${country.name}`}
+          height="200"
+          width="300"
+        />
+      </div>
+    );
+  }
+}
+//#endregion
+
 
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -406,15 +620,18 @@ class App extends React.Component {
     },
   };
   changeBackground = () => {
-    let whiteBG = {backgroundColor: "smokewhite", color: "black"};
-    let blackBG = {backgroundColor: "black", color: "smokewhite"};
-    let bgColor = this.state.theme.backgroundColor == whiteBG.backgroundColor ? blackBG : whiteBG;
+    let whiteBG = { backgroundColor: "smokewhite", color: "black" };
+    let blackBG = { backgroundColor: "black", color: "smokewhite" };
+    let bgColor =
+      this.state.theme.backgroundColor == whiteBG.backgroundColor
+        ? blackBG
+        : whiteBG;
     console.log(this.state.theme == whiteBG);
     this.setState({ theme: { bgColor } });
   };
   render() {
-    const bgColor = this.state.theme.backgroundColor
-    console.log(this.state.theme.backgroundColor)
+    const bgColor = this.state.theme.backgroundColor;
+    console.log(this.state.theme.backgroundColor);
     return (
       <div className="app">
         <h2>Frontend Technologies</h2>
@@ -437,6 +654,9 @@ class App extends React.Component {
         <hr />
         <h2>State Testing</h2>
         <StateTesting changeBackground={this.changeBackground} bgColor={bgColor} />
+        <hr />
+        <h2>Countries</h2>
+        <CountryTableReturn countrylist={countries} />
       </div>
     );
   }
