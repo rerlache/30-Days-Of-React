@@ -588,7 +588,7 @@ const CountryTableReturn = ({ countrylist }) => {
     <Country countryData={country} key={country.name} />
   ));
   return (
-    <table>
+    <table className="hidden">
       <thead>
         <tr>
           <th>Name</th>
@@ -663,9 +663,9 @@ function CountriesList(props) {
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+//  constructor(props) {
+//    super(props);
+//  }
   state = {
     theme: {
       backgroundColor: "smokewhite",
@@ -676,10 +676,10 @@ class App extends React.Component {
     let whiteBG = { backgroundColor: "smokewhite", color: "black" };
     let blackBG = { backgroundColor: "black", color: "smokewhite" };
     let bgColor =
-      this.state.theme.backgroundColor == whiteBG.backgroundColor
+      this.state.theme.backgroundColor === whiteBG.backgroundColor
         ? blackBG
         : whiteBG;
-    console.log(this.state.theme == whiteBG);
+    console.log(this.state.theme === whiteBG);
     this.setState({ theme: { bgColor } });
   };
   render() {
@@ -713,6 +713,7 @@ class App extends React.Component {
         <hr />
         <h2>Countries</h2>
         <CountriesList countries={countries} />
+        <CountryTableReturn countrylist={countries} />
       </div>
     );
   }
