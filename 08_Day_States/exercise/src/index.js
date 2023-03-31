@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import htmlLogo from "./images/html.svg";
@@ -393,7 +393,7 @@ class StateTesting extends React.Component {
 }
 //#endregion
 //#region Country Selection
-// TODO: makeover of the list, to display it in a box and change it with a button click!
+// Creates the table-row for a single country
 const Country = ({
   countryData: { name, capital, language, population, currency, flaglink },
 }) => {
@@ -410,15 +410,18 @@ const Country = ({
     </tr>
   );
 };
+// Array for all the countries
 const countries = [
-  {name: "Canada",
+  {
+    name: "Canada",
     capital: "Ottawa",
     language: "English, French",
     population: 37636329,
     currency: "Canadian dollar",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ca-flag.gif",
   },
-  {name: "United States",
+  {
+    name: "United States",
     capital: "Washington D.C.",
     language: "English",
     population: 332639102,
@@ -426,133 +429,152 @@ const countries = [
     flaglink: "https://www.worldometers.info/img/flags/small/tn_us-flag.gif",
   },
   // Add other countries following the same structure
-  {name: "Japan",
+  {
+    name: "Japan",
     capital: "Tokyo",
     language: "Japanese",
     population: 126010000,
     currency: "Japanese yen",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ja-flag.gif",
   },
-  {name: "Mexico",
+  {
+    name: "Mexico",
     capital: "Mexico City",
     language: "Spanish",
     population: 126014024,
     currency: "Mexican peso",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_mx-flag.gif",
   },
-  {name: "Germany",
+  {
+    name: "Germany",
     capital: "Berlin",
     language: "German",
     population: 83240525,
     currency: "Euro",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_gm-flag.gif",
   },
-  {name: "Brazil",
+  {
+    name: "Brazil",
     capital: "Brasília",
     language: "Portuguese",
     population: 213876599,
     currency: "Brazilian real",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_br-flag.gif",
   },
-  {name: "India",
+  {
+    name: "India",
     capital: "New Delhi",
     language: "Hindi, English",
     population: 1393248737,
     currency: "Indian rupee",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_in-flag.gif",
   },
-  {name: "China",
+  {
+    name: "China",
     capital: "Beijing",
     language: "Mandarin",
     population: 1411778724,
     currency: "Renminbi",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ch-flag.gif",
   },
-  {name: "France",
+  {
+    name: "France",
     capital: "Paris",
     language: "French",
     population: 65480710,
     currency: "Euro",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_fr-flag.gif",
   },
-  {name: "South Korea",
+  {
+    name: "South Korea",
     capital: "Seoul",
     language: "Korean",
     population: 51269185,
     currency: "South Korean won",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ks-flag.gif",
   },
-  {name: "Spain",
+  {
+    name: "Spain",
     capital: "Madrid",
     language: "Spanish",
     population: 46754778,
     currency: "Euro",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_sp-flag.gif",
   },
-  {name: "United Kingdom",
+  {
+    name: "United Kingdom",
     capital: "London",
     language: "English",
     population: 67886011,
     currency: "Pound sterling",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_uk-flag.gif",
   },
-  {name: "Italy",
+  {
+    name: "Italy",
     capital: "Rome",
     language: "Italian",
     population: 60026546,
     currency: "Euro",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_it-flag.gif",
   },
-  {name: "Russia",
+  {
+    name: "Russia",
     capital: "Moscow",
     language: "Russian",
     population: 145934462,
     currency: "Russian ruble",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_rs-flag.gif",
   },
-  {name: "Australia",
+  {
+    name: "Australia",
     capital: "Canberra",
     language: "English",
     population: 25550683,
     currency: "Australian dollar",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_as-flag.gif",
   },
-  {name: "Nigeria",
+  {
+    name: "Nigeria",
     capital: "Abuja",
     language: "English",
     population: 206139589,
     currency: "Nigerian naira",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ni-flag.gif",
   },
-  {name: "Argentina",
+  {
+    name: "Argentina",
     capital: "Buenos Aires",
     language: "Spanish",
     population: 45267449,
     currency: "Argentine peso",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_ar-flag.gif",
   },
-  {name: "Poland",
+  {
+    name: "Poland",
     capital: "Warsaw",
     language: "Polish",
     population: 37975841,
     currency: "Polish złoty",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_pl-flag.gif",
   },
-  {name: "South Africa",
+  {
+    name: "South Africa",
     capital: "Pretoria, Cape Town, Bloemfontein",
     language: "Afrikaans, English",
     population: 59436725,
     currency: "South African rand",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_sf-flag.gif",
   },
-  {name: "Colombia",
+  {
+    name: "Colombia",
     capital: "Bogotá",
     language: "Spanish",
     population: 50882891,
     currency: "Colombian peso",
     flaglink: "https://www.worldometers.info/img/flags/small/tn_co-flag.gif",
   },
-  {name: "Austria",
+  {
+    name: "Austria",
     capital: "Vienna",
     language: "German, English",
     population: 8828910,
@@ -560,6 +582,7 @@ const countries = [
     flaglink: "https://www.worldometers.info/img/flags/small/tn_au-flag.gif",
   },
 ];
+// Shows the table with all the countries from the array
 const CountryTableReturn = ({ countrylist }) => {
   const countryList = countrylist.map((country) => (
     <Country countryData={country} key={country.name} />
@@ -580,32 +603,62 @@ const CountryTableReturn = ({ countrylist }) => {
     </table>
   );
 };
+// Shows the box with the Button to switch to the next country
+function CountriesList(props) {
+  const [currentCountryIndex, setCurrentCountryIndex] = useState(0);
 
-class CreateCountryArray extends React.Component {
-  constructor(props){
-    super(props)
-  }
-  render() {
-    const country = this.props
-    return (
-      <div>
-        <h1>{country.name}</h1>
-        <p>Capital: {country.capital}</p>
-        <p>Language: {country.language}</p>
-        <p>Population: {country.population}</p>
-        <p>Currency: {country.currency}</p>
-        <img
-          src={country.flaglink}
-          alt={`Flag of ${country.name}`}
-          height="200"
-          width="300"
-        />
-      </div>
+  const handleNextCountry = () => {
+    setCurrentCountryIndex(
+      currentCountryIndex === props.countries.length - 1
+        ? 0
+        : currentCountryIndex + 1
     );
-  }
+  };
+
+  return (
+    <div>
+      <div className="countryBox">
+        <center>
+          <img
+            src={props.countries[currentCountryIndex].flaglink}
+            className="countryFlag"
+            alt={props.countries[currentCountryIndex].name}
+          />
+          <br />
+          <div className="countryName">
+            {props.countries[currentCountryIndex].name}
+          </div>
+        </center>
+        <div>
+          <strong>Capital: </strong>
+          {props.countries[currentCountryIndex].capital}
+        </div>
+        <div>
+          <strong>Language: </strong>
+          {props.countries[currentCountryIndex].language}
+        </div>
+        <div>
+          <strong>Population: </strong>
+          {Number(
+            props.countries[currentCountryIndex].population
+          ).toLocaleString()}
+        </div>
+        <div>
+          <strong>Currency: </strong>
+          {props.countries[currentCountryIndex].currency}
+        </div>
+      </div>
+      <center>
+        <CustomButton
+          doThis={handleNextCountry}
+          text="Next"
+          design="subbuttonstyle"
+        />
+      </center>
+    </div>
+  );
 }
 //#endregion
-
 
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -653,10 +706,13 @@ class App extends React.Component {
         <PopulationRendering popData={tenHighestPopulation} />
         <hr />
         <h2>State Testing</h2>
-        <StateTesting changeBackground={this.changeBackground} bgColor={bgColor} />
+        <StateTesting
+          changeBackground={this.changeBackground}
+          bgColor={bgColor}
+        />
         <hr />
         <h2>Countries</h2>
-        <CountryTableReturn countrylist={countries} />
+        <CountriesList countries={countries} />
       </div>
     );
   }
