@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import htmlLogo from "./images/html.svg";
@@ -6,6 +6,15 @@ import cssLogo from "./images/css.svg";
 import jsLogo from "./images/javascript.svg";
 import reactLogo from "./images/react.svg";
 import userPhoto from "./images/robin.jpg";
+import backgroundSpring from "./images/spring.jpg";
+import backgroundSummer from "./images/summer.jpg";
+import backgroundFall from "./images/fall.jpg";
+import backgroundWinter from "./images/winter.jpg";
+import morningBG from "./images/morning.jpg";
+import afternoonBG from "./images/afternoon.jpg";
+import eveningBG from "./images/evening.jpg";
+import nightBG from "./images/night.jpg";
+import loadingGif from "./images/loading.gif";
 
 //#region Header
 const logos = [htmlLogo, cssLogo, jsLogo, reactLogo];
@@ -660,30 +669,107 @@ function CountriesList(props) {
 }
 //#endregion
 //#region Conditional Rendering
+const SeasonalBackground = (props) => {
+  const [backgroundImg, setBackgroundImg] = useState("");
 
+  useEffect(() => {
+    const date = new Date();
+    const month = date.getMonth() + 1;
+
+    if (month >= 3 && month <= 5) {
+      // March, April, May
+      setBackgroundImg(backgroundSpring);
+    } else if (month >= 6 && month <= 8) {
+      // June, July, August
+      setBackgroundImg(backgroundSummer);
+    } else if (month >= 9 && month <= 11) {
+      // September, October, November
+      setBackgroundImg(backgroundFall);
+    } else {
+      // December, January, February
+      setBackgroundImg(backgroundWinter);
+    }
+  }, []);
+
+  return (
+    <div
+      style={{
+        background: `url(${backgroundImg}) center center / cover no-repeat fixed`,
+        height: "500px",
+      }}
+    >
+      <h3>{props.content}</h3>
+      {backgroundImg}
+    </div>
+  );
+};
+const TimedBackground = (props) => {
+  const [backgroundImg, setBackgroundImg] = useState("");
+
+  useEffect(() => {
+    const date = new Date();
+    const hour = date.getHours();
+
+    if (hour >= 5 && hour < 12) {
+      // morning (5am to 12pm)
+      setBackgroundImg(morningBG);
+    } else if (hour >= 12 && hour < 18) {
+      // afternoon (12pm to 6pm)
+      setBackgroundImg(afternoonBG);
+    } else if (hour >= 18 && hour < 22) {
+      // evening (6pm to 10pm)
+      setBackgroundImg(eveningBG);
+    } else {
+      // night (10pm to 5am)
+      setBackgroundImg(nightBG);
+    }
+  }, []);
+
+  return (
+    <div
+      style={{
+        background: `url(${backgroundImg}) center center / cover no-repeat fixed`,
+        height: "500px",
+        color: 'whitesmoke'
+      }}
+    >
+      <h3>{props.content}</h3>
+      {backgroundImg}
+    </div>
+  );
+};
+const LoadingContent = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    console.log('start timeout now ..')
+    setTimeout(() => {
+      setIsLoading(false)
+      console.log('Timeout called!')
+    }, 10000)
+  }, []);
+  
+  return (
+    <div>
+      {isLoading ? 
+        <img src={loadingGif} alt="Loading..." /> : 
+        <div>
+          All Data is fetched now!
+        </div>
+      }
+    </div>
+  );
+};
 //#endregion
 
 //#region RENDER MAGIC
 const root = ReactDOM.createRoot(document.getElementById("root"));
 class App extends React.Component {
-//  constructor(props) {
-//    super(props);
-//  }
   state = {
     theme: {
       backgroundColor: "smokewhite",
       color: "black",
     },
-  };
-  changeBackground = () => {
-    let whiteBG = { backgroundColor: "smokewhite", color: "black" };
-    let blackBG = { backgroundColor: "black", color: "smokewhite" };
-    let bgColor =
-      this.state.theme.backgroundColor === whiteBG.backgroundColor
-        ? blackBG
-        : whiteBG;
-    console.log(this.state.theme === whiteBG);
-    this.setState({ theme: { bgColor } });
   };
   render() {
     const bgColor = this.state.theme.backgroundColor;
@@ -719,9 +805,12 @@ class App extends React.Component {
         <CountryTableReturn countrylist={countries} />
         <hr />
         <h2>Conditional Rendering</h2>
-        <h3>change background based on season of the year (autumn, winter, spring, summer):</h3>
-        <h3>change background based on time of the day (morning, noon, evening, night):</h3>
-        <h3>show loading while real content loads (to simulate use setTimeout):</h3>
+        <SeasonalBackground content="change background based on season of the year (autumn, winter, spring,summer):" />
+        <TimedBackground content="change background based on time of the day (morning, noon, evening, night):" />
+        <h3>
+          show loading while real content loads (to simulate use setTimeout):
+        </h3>
+        <LoadingContent />
       </div>
     );
   }
