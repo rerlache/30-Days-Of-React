@@ -13,6 +13,7 @@ import StateTesting from "./components/StateTesting";
 import CountriesList from "./components/countries/List";
 import CountryTable from "./components/countries/Table";
 import EventHandling from "./components/EventHandling";
+import FormComponent from "./components/FormComponent";
 //import CustomButton from "./components/customs/Button";
 
 // named export in arrow function
@@ -288,6 +289,9 @@ function App() {
       <hr />
       <h2>Event Handling</h2>
       <EventHandling />
+      <hr />
+      <h2>Form with React</h2>
+      <FormComponent />
     </div>
   );
 }
