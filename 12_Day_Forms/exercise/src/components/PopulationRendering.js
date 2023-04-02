@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 //#region Population
 const Population = ({ populationData: { country, population } }) => {
-  const barWidth = Math.round(population / 15000000);
+  const barWidth = Math.round(population / 30000000);
   console.log({ barWidth });
   return (
     <tbody>
@@ -32,7 +32,6 @@ class PopulationRendering extends Component {
   render() {
     return (
       <div>
-        <h1 className="centerText">World Population</h1>
         <h3 className="centerText">Ten most populated countries</h3>
         <GetPopulationDivList pops={this.props.popData} />
       </div>

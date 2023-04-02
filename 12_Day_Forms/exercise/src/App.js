@@ -269,7 +269,7 @@ function App() {
       <h2>Even/Odd/Prime Numbers</h2>
       <NumberGenerator numbers={numberArr} />
       <hr />
-      <h2>Population</h2>
+      <h2>World Population</h2>
       <PopulationRendering popData={tenHighestPopulation} />
       <hr />
       <h2>State Testing</h2>
