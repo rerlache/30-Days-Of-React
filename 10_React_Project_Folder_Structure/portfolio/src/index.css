@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.app-header {
+  background-color: antiquewhite;
+  text-align: center;
+  text-transform: uppercase;
+}
+.app-content {
+  background-color: whitesmoke;
+  padding: 10px 20px;
+}
+.app-footer {
+  background-color: antiquewhite;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 10px 15px;
+}
+
+div.user-card {
+  background-color: white;
+  border: 0.5px solid rgba(0, 0, 0, 0.25);
+  color: rgba(0, 0, 0, 0.75);
+  margin: 20px;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+    rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
+}
+.user-card-header {
+  width: 200px;
+}
+.user-photo {
+  min-height: 50px;
+  max-height: 200px;
+  min-width: 50px;
+  max-width: 200px;
+  border-radius: 50px;
+}
+.user-name {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: -5px;
+}
