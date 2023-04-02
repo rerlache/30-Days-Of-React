@@ -9,7 +9,7 @@
 */
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 /* == General style === */
@@ -18,10 +18,10 @@ code {
   padding: 0;
   margin: 0;
 }
-.centerText{
+.centerText {
   text-align: center;
 }
-.centerTable{
+.centerTable {
   align-content: center;
   margin-left: auto;
   margin-right: auto;
@@ -99,8 +99,7 @@ div.userContainer {
   padding: 15px;
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.024) 0px 0px 0px 1px,
-    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px,
-    rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 0px 0px, rgba(0, 0, 0, 0.03) 0px 0px 8px 0px,
     rgba(0, 0, 0, 0.1) 0px 20px 30px 0px;
 }
 .userPicturestyle {
@@ -157,12 +156,12 @@ div.userContainer {
   flex-flow: row;
 }
 
-.popCountryStyle{
+.popCountryStyle {
   font-weight: bold;
   text-transform: uppercase;
   vertical-align: middle;
 }
-.popNumberStyle{
+.popNumberStyle {
   font-weight: bold;
   vertical-align: middle;
   text-align: right;
@@ -206,7 +205,7 @@ img.countryFlag {
   max-height: 90px;
   align-content: center;
 }
-.countryName{
+.countryName {
   text-transform: uppercase;
   font-size: 22px;
   font-weight: bold;
@@ -218,8 +217,8 @@ html,
 body {
   background-color: rgba(70, 63, 62, 0.05);
   line-height: 1.5;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-weight: 300;
   color: black;
@@ -289,4 +288,19 @@ footer {
 
 .hidden {
   display: none;
+}
+.bigbox {
+  height: 800px;
+  width: 800px;
+  border: 1px solid #6cf;
+}
+.jumpingbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  width: 300px;
+  background-color: red;
+  color: white;
+  font-weight: bold;
 }

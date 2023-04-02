@@ -12,6 +12,7 @@ import PopulationRendering from "./components/PopulationRendering";
 import StateTesting from "./components/StateTesting";
 import CountriesList from "./components/countries/List";
 import CountryTable from "./components/countries/Table";
+import EventHandling from "./components/EventHandling";
 //import CustomButton from "./components/customs/Button";
 
 // named export in arrow function
@@ -284,6 +285,9 @@ function App() {
         show loading while real content loads (to simulate use setTimeout):
       </h3>
       <LoadingContent />
+      <hr />
+      <h2>Event Handling</h2>
+      <EventHandling />
     </div>
   );
 }
