@@ -291,11 +291,11 @@ function App() {
         <NavLink to="/EventHandling">
           <button>Event Handling</button>
         </NavLink>
-        <NavLink to="/FormControl">
-          <button>Form with React</button>
+        <NavLink to="/FormControl" className="stateButtonStyle">
+          Form with React
         </NavLink>
-        <NavLink to="/ThirdParty">
-          <button>Third Party Packages</button>
+        <NavLink to="/ThirdParty" className="subbuttonstyle">
+          Third Party Packages
         </NavLink>
         <Routes>
           <Route
