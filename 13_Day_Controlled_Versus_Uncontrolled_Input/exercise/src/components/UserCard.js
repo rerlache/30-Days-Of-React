@@ -12,7 +12,6 @@ const Skills = ({ skills }) => {
   const skillsList = skills.map((skill) => (
     <Skill skill={skill} key={skill.name} />
   ));
-  console.log({ skillsList });
   return <div>{skillsList}</div>;
 };
 function UserCard(props) {

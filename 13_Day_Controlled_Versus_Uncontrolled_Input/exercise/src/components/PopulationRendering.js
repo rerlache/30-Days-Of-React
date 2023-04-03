@@ -3,7 +3,6 @@ import React, { Component } from "react";
 //#region Population
 const Population = ({ populationData: { country, population } }) => {
   const barWidth = Math.round(population / 30000000);
-  console.log({ barWidth });
   return (
     <tbody>
       <tr>

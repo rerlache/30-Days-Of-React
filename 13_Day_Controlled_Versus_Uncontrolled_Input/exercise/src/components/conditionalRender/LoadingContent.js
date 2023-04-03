@@ -5,10 +5,8 @@ const LoadingContent = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    console.log("start timeout now ..");
     setTimeout(() => {
       setIsLoading(false);
-      console.log("Timeout called!");
     }, 10000);
   }, []);
 

@@ -21,8 +21,6 @@ function EventHandling() {
     // 👇️ get number between min (inclusive) and max (inclusive)
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  console.log("box active? " + isJumpingBoxActive);
-  console.log(activateButtonText);
   return (
     <div>
       <CustomButton

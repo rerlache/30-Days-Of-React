@@ -26,9 +26,6 @@ function NumberColor(num) {
   return color;
 }
 class NumberDivGen extends Component {
-  //  constructor(props) {
-  //    super(props);
-  //  }
   render() {
     return (
       <div
@@ -45,7 +42,6 @@ const NumberGenerator = (props) => {
   props.numbers.forEach((number) => {
     colors.push(<NumberDivGen number={number} key={number} />);
   });
-  console.log({ colors });
   return <div className="flex-container">{colors}</div>;
 };
 //#endregion

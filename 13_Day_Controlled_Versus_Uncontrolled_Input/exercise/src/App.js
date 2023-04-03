@@ -242,7 +242,6 @@ const countries = [
 
 function App() {
   const [appBackground, setAppBackground] = useState("whitesmoke");
-  console.log("initial background: " + appBackground);
   const backgroundHandler = () => {
     const newBG = appBackground === "whitesmoke" ? "darkgray" : "whitesmoke";
     console.log(newBG);

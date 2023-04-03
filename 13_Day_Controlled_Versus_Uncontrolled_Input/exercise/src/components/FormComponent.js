@@ -11,11 +11,11 @@ const options = [
 ];
 
 const skillsList = [
-  { name: "html", checked: false },
-  { name: "css", checked: false },
-  { name: "react", checked: false },
-  { name: "javascript", checked: false },
-  { name: "c#", checked: false },
+  {id: 0, name: "html", checked: false },
+  {id: 1, name: "css", checked: false },
+  {id: 2, name: "react", checked: false },
+  {id: 3, name: "javascript", checked: false },
+  {id: 4, name: "c#", checked: false },
 ];
 
 const countryDropDownOptions = options.map(({ value, label }) => (
