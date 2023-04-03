@@ -91,7 +91,6 @@ function FormComponent() {
       default:
         break;
     }
-    console.log(skills);
   }
   function handleSubmit(e) {
     e.preventDefault();
@@ -189,6 +188,7 @@ function FormComponent() {
               id="female"
               name="gender"
               value="Female"
+              key="gender-female"
               onChange={handleChange}
               checked={gender === "Female"}
             />
@@ -200,6 +200,7 @@ function FormComponent() {
               type="radio"
               name="gender"
               value="Male"
+              key="gender-male"
               onChange={handleChange}
               checked={gender === "Male"}
             />
@@ -211,6 +212,7 @@ function FormComponent() {
               type="radio"
               name="gender"
               value="Other"
+              key="gender-other"
               onChange={handleChange}
               checked={gender === "Other"}
             />
@@ -226,6 +228,7 @@ function FormComponent() {
                   type="checkbox"
                   id={skill.name}
                   name={skill.name}
+                  key={skill.name}
                   onChange={handleChange}
                 />
                 <label htmlFor={skill.name}>{skill.name}</label>
