@@ -21,7 +21,7 @@ export default function ThirdPartyPackages() {
       <div className="thirdpartybox">
         <Title>react-icons</Title>
         <Code>npm install react-icons@latest</Code>
-        <a href="https://react-icons.github.io/react-icons" target="_blank">
+        <a href="https://react-icons.github.io/react-icons" target="_blank" rel="noreferrer">
           <FiExternalLink /> react-icons Site
         </a>
       </div>
@@ -61,7 +61,7 @@ export default function ThirdPartyPackages() {
         <div>
           The reactstrap package allows to use a component with bootstrap.
         </div>
-        <a href="https://reactstrap.github.io/" target="_blank">
+        <a href="https://reactstrap.github.io/" target="_blank" rel="noreferrer">
           <FiExternalLink /> reactstrap Site
         </a>
       </div>
@@ -79,7 +79,7 @@ export default function ThirdPartyPackages() {
             This package is used/tested in the <strong>FormComponent.js</strong>
           </p>
         </div>
-        <a href="https://www.npmjs.com/package/simple-react-validator" target="_blank" >
+        <a href="https://www.npmjs.com/package/simple-react-validator" target="_blank" rel="noreferrer" >
           <FiExternalLink /> validator Site
         </a>
       </div>

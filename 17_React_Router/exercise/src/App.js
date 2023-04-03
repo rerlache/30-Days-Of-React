@@ -15,6 +15,13 @@ import CountryTable from "./components/countries/Table";
 import EventHandling from "./components/EventHandling";
 import FormComponent from "./components/FormComponent";
 import ThirdPartyPackages from "./components/ThirdParties";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  NavLink,
+} from "react-router-dom";
+import "./assets/styles/index.css";
 //import CustomButton from "./components/customs/Button";
 
 // named export in arrow function
@@ -240,7 +247,6 @@ const countries = [
     flaglink: "https://www.worldometers.info/img/flags/small/tn_au-flag.gif",
   },
 ];
-
 function App() {
   const [appBackground, setAppBackground] = useState("whitesmoke");
   const backgroundHandler = () => {
@@ -253,49 +259,110 @@ function App() {
   };
   //<CustomButton doThis={backgroundHandler} text="change BG" />
   return (
-    <div className="app">
-      <h2>Frontend Technologies</h2>
-      <Header headline="Front End Technologies" />
-      <hr />
-      <h2>Subscribe Card</h2>
-      <SubscribeCard welcome={subHeader} desc={subDescription} />
-      <hr />
-      <h2>Hexadecimal Colors</h2>
-      <HexaColor colorCode="4e417e" amount="20" />
-      <hr />
-      <h2>Person Card</h2>
-      <UserCard person={person} />
-      <hr />
-      <h2>Even/Odd/Prime Numbers</h2>
-      <NumberGenerator numbers={numberArr} />
-      <hr />
-      <h2>World Population</h2>
-      <PopulationRendering popData={tenHighestPopulation} />
-      <hr />
-      <h2>State Testing</h2>
-      <StateTesting changeBackground={backgroundHandler} />
-      <hr />
-      <h2>Countries</h2>
-      <CountriesList countries={countries} />
-      <CountryTable countrylist={countries} />
-      <hr />
-      <h2>Conditional Rendering</h2>
-      <SeasonalBackground content="change background based on season of the year (autumn, winter, spring,summer):" />
-      <TimedBackground content="change background based on time of the day (morning, noon, evening, night):" />
-      <h3>
-        show loading while real content loads (to simulate use setTimeout):
-      </h3>
-      <LoadingContent />
-      <hr />
-      <h2>Event Handling</h2>
-      <EventHandling />
-      <hr />
-      <h2>Form with React</h2>
-      <FormComponent />
-      <hr />
-      <h2>Third Party Packages</h2>
-      <ThirdPartyPackages />
-    </div>
+    <Router>
+      <div className="app">
+        <NavLink to="/FrontEndTechs">
+          <button>Day 01 (Front End Technologies)</button>
+        </NavLink>
+        <NavLink to="/Subscribe">
+          <button>Day 01 (Subscribe)</button>
+        </NavLink>
+        <NavLink to="/Hexcolors">
+          <button>Day 01 (Colors)</button>
+        </NavLink>
+        <NavLink to="/Person">
+          <button>Day 02 (Person Card)</button>
+        </NavLink>
+        <NavLink to="/Numbers">
+          <button>Day 02 (Even/Odd/Prime Numbers)</button>
+        </NavLink>
+        <NavLink to="/WorldPop">
+          <button>World Population</button>
+        </NavLink>
+        <NavLink to="/StateTesting">
+          <button>State Testing</button>
+        </NavLink>
+        <NavLink to="/Countries">
+          <button>Countries</button>
+        </NavLink>
+        <NavLink to="/CondRendering">
+          <button>Conditional Rendering</button>
+        </NavLink>
+        <NavLink to="/EventHandling">
+          <button>Event Handling</button>
+        </NavLink>
+        <NavLink to="/FormControl">
+          <button>Form with React</button>
+        </NavLink>
+        <NavLink to="/ThirdParty">
+          <button>Third Party Packages</button>
+        </NavLink>
+        <Routes>
+          <Route
+            exact path="/FrontEndTechs"
+            element={<Header headline="Front End Technologies" />}
+          />
+          <Route
+            exact path="/Subscribe"
+            element={
+              <SubscribeCard welcome={subHeader} desc={subDescription} />
+            }
+          />
+          <Route
+            exact path="/Hexcolors"
+            element={<HexaColor colorCode="4e417e" amount="20" />}
+          />
+          <Route exact path="/Person" element={<UserCard person={person} />} />
+          <Route
+            exact path="/Numbers"
+            element={<NumberGenerator numbers={numberArr} />}
+          />
+          <Route
+            exact path="/WorldPop"
+            element={<PopulationRendering popData={tenHighestPopulation} />}
+          />
+          <Route
+            exact path="/StateTesting"
+            element={<StateTesting changeBackground={backgroundHandler} />}
+          />
+          <Route
+            exact path="/Countries"
+            element={
+              <div>
+                <CountriesList countries={countries} />
+                <CountryTable countrylist={countries} />
+              </div>
+            }
+          />
+          <Route
+            exact path="/CondRendering"
+            element={
+              <div>
+                <h3>
+                  show loading while real content loads (to simulate use
+                  setTimeout):
+                </h3>
+                <LoadingContent />
+                <SeasonalBackground content="change background based on season of the year (autumn, winter, spring,summer):" />
+                <TimedBackground content="change background based on time of the day (morning, noon, evening, night):" />
+              </div>
+            }
+          />
+          <Route
+            exact path="/EventHandling"
+            element={<EventHandling />}
+          />
+          <Route
+            exact path="/FormControl"
+            element={<FormComponent />}
+          />
+          <Route
+            exact path="/ThirdParty"
+            element={<ThirdPartyPackages />}
+          />
+        </Routes>        
+      </div>
+    </Router>
   );
 }
 

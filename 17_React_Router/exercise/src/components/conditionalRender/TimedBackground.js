@@ -3,7 +3,6 @@ import morningBG from "../../assets/images/morning.jpg";
 import afternoonBG from "../../assets/images/afternoon.jpg";
 import eveningBG from "../../assets/images/evening.jpg";
 import nightBG from "../../assets/images/night.jpg";
-import "../../assets/styles/index.css";
 
 
 const TimedBackground = (props) => {

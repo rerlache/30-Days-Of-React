@@ -3,7 +3,6 @@ import htmlLogo from "../assets/images/html.svg";
 import cssLogo from "../assets/images/css.svg";
 import jsLogo from "../assets/images/javascript.svg";
 import reactLogo from "../assets/images/react.svg";
-import "../assets/styles/index.css";
 
 const logos = [htmlLogo, cssLogo, jsLogo, reactLogo];
 class LogosFormatted extends React.Component {

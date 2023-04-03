@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../assets/styles/index.css";
 import CustomInput from "./CustomInput";
 import SimpleReactValidator from "simple-react-validator";
 
