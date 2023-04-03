@@ -10,6 +10,14 @@ const options = [
   { value: "Swiss", label: "Swiss" },
 ];
 
+const skillsList = [
+  { name: "html", checked: false },
+  { name: "css", checked: false },
+  { name: "react", checked: false },
+  { name: "javascript", checked: false },
+  { name: "c#", checked: false },
+];
+
 const countryDropDownOptions = options.map(({ value, label }) => (
   <option value={value} key={value}>
     {label}
@@ -27,16 +35,19 @@ function FormComponent() {
   let [country, setCountry] = useState("");
   let [bio, setBio] = useState("");
   let [gender, setGender] = useState("");
-  let [skills, setSkills] = useState([]);
+  let [skills, setSkills] = useState(skillsList);
   let [file, setFile] = useState("");
 
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       setSkills(
-        skills.push({
-          name: name,
-          checked: checked,
+        skills.map((skill) => {
+          if (skill.name === name) {
+            return { ...skill, checked: checked };
+          } else {
+            return skill
+          }
         })
       );
     } else if (type === "file") {
@@ -95,12 +106,7 @@ function FormComponent() {
       country: country,
       bio: bio,
       gender: gender,
-      skills: {
-        html: skills.html,
-        css: skills.css,
-        javascript: skills.javascript,
-        react: skills.react,
-      },
+      skills: skills,
     };
     console.log(person);
   }
@@ -213,42 +219,19 @@ function FormComponent() {
         </div>
         <div>
           <p>Select your skills</p>
-          <div>
-            <input
-              type="checkbox"
-              id="html"
-              name="html"
-              onChange={handleChange}
-            />
-            <label htmlFor="html">HTML</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="css"
-              name="css"
-              onChange={handleChange}
-            />
-            <label htmlFor="css">CSS</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="react"
-              name="react"
-              onChange={handleChange}
-            />
-            <label htmlFor="react">react</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="javascript"
-              name="javascript"
-              onChange={handleChange}
-            />
-            <label htmlFor="javascript">JavaScript</label>
-          </div>
+          {skillsList.map((skill) => {
+            return (
+              <div>
+                <input
+                  type="checkbox"
+                  id={skill.name}
+                  name={skill.name}
+                  onChange={handleChange}
+                />
+                <label htmlFor={skill.name}>{skill.name}</label>
+              </div>
+            );
+          })}
         </div>
         <CustomInput
           inputtype="file"
